@@ -18,6 +18,9 @@ public class Main {
 		System.out.println("Az eredmeny:");
 		switch (m) {
 		case "+" : System.out.println(a+b);
+		break;
+		case "-" : System.out.println(a-b);
+		break;
 		}
 		
 		

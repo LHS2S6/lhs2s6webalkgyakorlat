@@ -19,7 +19,7 @@ public class InResultSet {
 	public static void Procedure() {
 		try {
 			CallableStatement cs=db.conn.prepareCall("{call storedProcedure(?)}");
-			cs.setString(1, "Mekk Elek");
+			cs.setString(1, "Localhost");
 			ResultSet rs=cs.executeQuery();
 			while (rs.next()) {
 				System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getInt(4)+" "+rs.getString(5));	

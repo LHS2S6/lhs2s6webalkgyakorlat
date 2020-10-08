@@ -23,7 +23,7 @@ public class Insert {
 	public static void Insertmethod() {
 		Statement s=null;
 		try {
-			String sqlp = "Insert into cats values(5,'Macsek','fekete',4,'Localhost')";
+			String sqlp = "Insert into cats values(6,'Macsek2','Perzsa',4,'Localhost')";
 			s=db.conn.createStatement();
 			s.executeUpdate(sqlp);
 			System.out.println("Insert OK!");

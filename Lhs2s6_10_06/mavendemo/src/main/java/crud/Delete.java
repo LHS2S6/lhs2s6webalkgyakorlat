@@ -21,7 +21,7 @@ public class Delete {
 		System.out.println("Update:");
 		Statement s=null;
 		try {
-		String sqlp="Delete from cats where name='Macsek' and owner='Localhost'";
+		String sqlp="Delete from cats where name='Perzsa' and owner='Gal Dora'";
 		s=db.conn.createStatement();
 		s.executeUpdate(sqlp);
 		System.out.println("Update OK!");

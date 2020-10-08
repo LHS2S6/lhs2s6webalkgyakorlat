@@ -19,7 +19,7 @@ public class Update {
 	public static void UpdateMethod() {
 		Statement s=null;
 		try {
-		String sqlp="Update cats set owner='Mekk Elek' where breed='sziami'";
+		String sqlp="Update cats set owner='Piros Ferenc' where breed='sziami'";
 		s=db.conn.createStatement();
 		s.executeUpdate(sqlp);
 		System.out.println("Update OK!");

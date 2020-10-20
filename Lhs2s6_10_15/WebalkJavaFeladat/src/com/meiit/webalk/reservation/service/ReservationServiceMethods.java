@@ -13,16 +13,15 @@ import com.meiit.webalk.reservation.domain.Room;
 import com.meiit.webalk.reservation.domain.Wing;
 import com.meiit.webalk.reservation.domain.WingType;
 
-public class ReservationServiceMethods implements ReservationService{
-	
+public class ReservationServiceMethods implements ReservationService {
+
 	BookingPerson bp;
 	List<Reservation> reservations = new ArrayList<Reservation>();
-	
 
 	@Override
 	public void saveBookingPerson(BookingPerson a) {
-		bp=a;
-		
+		bp = a;
+
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class ReservationServiceMethods implements ReservationService{
 	public void saveReservation(Reservation r) {
 		r.setProcessed(true);
 		reservations.add(r);
-		
+
 	}
 
 	@Override
@@ -51,43 +50,38 @@ public class ReservationServiceMethods implements ReservationService{
 
 	@Override
 	public void checkIn() {
-		for (int i=0; i<reservations.size(); i++) {
+		for (int i = 0; i < reservations.size(); i++) {
 			reservations.get(i).setActive(true);
 			reservations.get(i).setFrom(LocalDateTime.now());
 		}
-			
+
 	}
 
 	@Override
 	public void checkOut() {
-		for (int i=0; i<reservations.size(); i++) {
+		for (int i = 0; i < reservations.size(); i++) {
 			reservations.get(i).setActive(false);
 			reservations.get(i).setTo(LocalDateTime.now());
 		}
-		
+
 	}
-	
-	
-	
-	
-	
+
 	static Hotel MakeData() {
 		Hotel hotel = new Hotel();
 		hotel.setAdress("Hotelcím");
 		hotel.setName("Hilton");
 		hotel.setStars(4);
-		
+
 		List<Floor> floors = new ArrayList<Floor>();
 		Floor fl1 = new Floor();
 		fl1.setFloorNumber(1);
 		fl1.setHotel(hotel);
-		
-		List<Wing> wings= new ArrayList<Wing>();
+
+		List<Wing> wings = new ArrayList<Wing>();
 		Wing w1 = new Wing();
 		w1.setDescription("North");
 		w1.setFloor(fl1);
-		
-		
+
 		List<Room> rooms = new ArrayList<Room>();
 		Room r1 = new Room();
 		r1.setBalcon(true);
@@ -96,7 +90,7 @@ public class ReservationServiceMethods implements ReservationService{
 		r1.setPrice(BigDecimal.valueOf(500));
 		r1.setWing(WingType.NORTH);
 		rooms.add(r1);
-		
+
 		Room r2 = new Room();
 		r2.setBalcon(true);
 		r2.setBeds(4);
@@ -104,7 +98,7 @@ public class ReservationServiceMethods implements ReservationService{
 		r2.setPrice(BigDecimal.valueOf(1500));
 		r2.setWing(WingType.NORTH);
 		rooms.add(r2);
-		
+
 		Room r3 = new Room();
 		r3.setBalcon(true);
 		r3.setBeds(1);
@@ -112,7 +106,7 @@ public class ReservationServiceMethods implements ReservationService{
 		r3.setPrice(BigDecimal.valueOf(200));
 		r3.setWing(WingType.NORTH);
 		rooms.add(r3);
-		
+
 		Room r4 = new Room();
 		r4.setBalcon(true);
 		r4.setBeds(2);
@@ -120,23 +114,15 @@ public class ReservationServiceMethods implements ReservationService{
 		r4.setPrice(BigDecimal.valueOf(500));
 		r4.setWing(WingType.NORTH);
 		rooms.add(r4);
-	
-		
-		
-		
+
 		w1.setRooms(rooms);
 		wings.add(w1);
-		
-		
+
 		fl1.setWings(wings);
 		floors.add(fl1);
-		
-		
-		
-		
+
 		hotel.setFloors(floors);
 		return hotel;
 	}
-	
 
 }

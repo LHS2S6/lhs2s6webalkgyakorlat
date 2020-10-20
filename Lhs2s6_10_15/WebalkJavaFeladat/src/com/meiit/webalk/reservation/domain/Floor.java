@@ -8,7 +8,6 @@ public class Floor {
 	private Hotel hotel;
 	private List<Wing> wings;
 
-	
 	public Hotel getHotel() {
 		return hotel;
 	}
@@ -33,7 +32,4 @@ public class Floor {
 		this.floorNumber = floorNumber;
 	}
 
-	
-	
-	
 }

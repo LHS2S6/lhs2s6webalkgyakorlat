@@ -32,6 +32,8 @@ public class Floor {
 	public void setFloorNumber(int floorNumber) {
 		this.floorNumber = floorNumber;
 	}
+
+	
 	
 	
 }

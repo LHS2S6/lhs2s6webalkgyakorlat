@@ -5,11 +5,36 @@ import java.time.LocalDateTime;
 
 public class Reservation {
 
+	private int id;
+	
 	private BigDecimal ammount;
 	private LocalDateTime from;
 	private LocalDateTime to;
 	private boolean active;
 	private boolean processed;
+	private Currency currency;
+	private BookingPerson bookingperson;
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public Currency getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+	public BookingPerson getBookingperson() {
+		return bookingperson;
+	}
+	public void setBookingperson(BookingPerson bookingperson) {
+		this.bookingperson = bookingperson;
+	}
 	public BigDecimal getAmmount() {
 		return ammount;
 	}

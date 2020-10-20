@@ -3,6 +3,8 @@ package com.meiit.webalk.reservation.domain;
 import java.util.List;
 
 public class Wing {
+	
+
 	private String description;
 	private Floor floor;
 	private List<Room> rooms;

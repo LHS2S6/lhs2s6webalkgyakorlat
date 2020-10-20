@@ -13,6 +13,6 @@ public interface View {
 	Room selectRoom(List<Hotel> a);
 	void printReservationSaved(Reservation a);
 	void printNotEnoughBalance(BookingPerson a);
-	void printCheckIn(Reservation a);
-	void printCheckOut(BookingPerson a, Reservation b);
+	void printCheckIn(List<Reservation> a);
+	void printCheckOut(BookingPerson a, List<Reservation> b);
 }

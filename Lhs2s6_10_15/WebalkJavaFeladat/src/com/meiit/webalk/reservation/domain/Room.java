@@ -1,25 +1,27 @@
 package com.meiit.webalk.reservation.domain;
 
+import java.math.BigDecimal;
+
 public class Room {
 
 	private int number;
 	private int beds;
 	private boolean balcon;
-	private int price;
-	private Wing wing;
+	private BigDecimal price;
+	private WingType wing;
 	
 	
 	
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	public Wing getWing() {
+	public WingType getWing() {
 		return wing;
 	}
-	public void setWing(Wing wing) {
+	public void setWing(WingType wing) {
 		this.wing = wing;
 	}
 	public int getNumber() {
@@ -40,6 +42,7 @@ public class Room {
 	public void setBalcon(boolean balcon) {
 		this.balcon = balcon;
 	}
+	
 	
 	
 }

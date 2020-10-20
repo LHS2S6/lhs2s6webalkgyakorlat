@@ -13,6 +13,14 @@ public class BookingPerson extends User {
 
 	
 	
+	
+	
+	public Currency getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
 	public String getName() {
 		return name;
 	}

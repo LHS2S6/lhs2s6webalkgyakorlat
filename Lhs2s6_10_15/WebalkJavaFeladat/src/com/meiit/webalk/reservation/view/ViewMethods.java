@@ -22,10 +22,12 @@ public class ViewMethods implements View {
 		bp.setName(sc.nextLine());
 		System.out.println("How much money do you have?");
 		String balance = sc.nextLine();
+		//Nice! Self improvement: This should be in other method least. Or class named validator or simething like that
 		while (!inputCheckBalance(balance)) {
 			System.out.println("How much money do you have?");
 			balance = sc.nextLine();
 		}
+		//dont need to parse yo can use BigDecimal.valueOf(balance) BigDecimal can parse string too
 		long lg = Long.parseLong(balance);
 		bp.setBalance(BigDecimal.valueOf(lg));
 
@@ -120,14 +122,19 @@ public class ViewMethods implements View {
 	public void printCheckOut(BookingPerson a, List<Reservation> b) {
 		System.out.println("Few days later");
 		System.out.println("Check out, Suprise! You are the 100th guest you get a 10% refund");
+		//Dont need the double Bigdecimal can handle
 		Double refund = 0.0;
+		//Refund only apply for the first element 
+		//this should be in service
 		for (int i = 0; i < b.size(); i++) {
 			refund = refund + (b.get(i).getAmmount().doubleValue() * 0.1);
 		}
+		//If I ask the balace from the service this give back invalid amount, Should be in service
 		a.setBalance(a.getBalance().add(BigDecimal.valueOf(refund)));
 
 	}
-
+	//If its not part of the interface use private instead of public
+	//Also if you want cleaner code you can introduce another class and put the following lines to it like ViewHelper or InputChecker
 	public boolean inputcheck() {
 		try {
 			Integer.parseInt(menu);
@@ -181,7 +188,8 @@ public class ViewMethods implements View {
 			}
 		}
 	}
-
+	
+	//If it is nut Interface every time use privete, public or protected keyworld!!
 	boolean inputCheckBalance(String input) {
 		try {
 			Integer.parseInt(input);
@@ -192,7 +200,9 @@ public class ViewMethods implements View {
 			return false;
 		}
 	}
-
+	
+	//Self improvement: NEVER USE SWITCH CASE, change to if or if else
+	//Switch case exist but in the corporate word nobody use it is a root cause of so many bugs!
 	boolean inputCheckCurrency(String input) {
 		boolean b = false;
 		switch (input) {

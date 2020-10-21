@@ -38,6 +38,7 @@ public class ReservationServiceMethods implements ReservationService {
 
 	@Override
 	public void saveReservation(Reservation r) {
+		//Processed represent the reservation status it should be set true during the check out
 		r.setProcessed(true);
 		reservations.add(r);
 
@@ -50,6 +51,8 @@ public class ReservationServiceMethods implements ReservationService {
 
 	@Override
 	public void checkIn() {
+		//One person how able to enjoy more than 1 reservation in the same time?
+		//we need onli the first element set to true
 		for (int i = 0; i < reservations.size(); i++) {
 			reservations.get(i).setActive(true);
 			reservations.get(i).setFrom(LocalDateTime.now());
@@ -59,6 +62,7 @@ public class ReservationServiceMethods implements ReservationService {
 
 	@Override
 	public void checkOut() {
+		//Same as before 
 		for (int i = 0; i < reservations.size(); i++) {
 			reservations.get(i).setActive(false);
 			reservations.get(i).setTo(LocalDateTime.now());
@@ -66,9 +70,10 @@ public class ReservationServiceMethods implements ReservationService {
 
 	}
 
+	//Self improvement: This should be in other class calld TestDataFactory or TestDataGenerator etc
 	static Hotel MakeData() {
 		Hotel hotel = new Hotel();
-		hotel.setAdress("Hotelcím");
+		hotel.setAdress("HotelcÃ­m");
 		hotel.setName("Hilton");
 		hotel.setStars(4);
 

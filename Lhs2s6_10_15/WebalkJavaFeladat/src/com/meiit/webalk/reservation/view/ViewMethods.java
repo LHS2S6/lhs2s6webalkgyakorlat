@@ -1,11 +1,9 @@
 package com.meiit.webalk.reservation.view;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
 import com.meiit.webalk.reservation.domain.BookingPerson;
-import com.meiit.webalk.reservation.domain.Currency;
 import com.meiit.webalk.reservation.domain.Hotel;
 import com.meiit.webalk.reservation.domain.Reservation;
 import com.meiit.webalk.reservation.domain.Room;
@@ -14,7 +12,7 @@ public class ViewMethods implements View {
 
 	BookingPerson bp = new BookingPerson();
 	Scanner sc = new Scanner(System.in);
-	public String menu = "";
+	public static String menu = "";
 
 	@Override
 	public BookingPerson readBookingPerson() {
@@ -22,23 +20,12 @@ public class ViewMethods implements View {
 		bp.setName(sc.nextLine());
 		System.out.println("How much money do you have?");
 		String balance = sc.nextLine();
-		//Nice! Self improvement: This should be in other method least. Or class named validator or simething like that
-		while (!inputCheckBalance(balance)) {
-			System.out.println("How much money do you have?");
-			balance = sc.nextLine();
-		}
-		//dont need to parse yo can use BigDecimal.valueOf(balance) BigDecimal can parse string too
-		long lg = Long.parseLong(balance);
-		bp.setBalance(BigDecimal.valueOf(lg));
+		bp.setBalance(Checker.inputMoney(balance));
 
 		System.out.println("What is your currency? (HUF, EUR or USD)");
 		String cur = sc.nextLine();
-		while (!inputCheckCurrency(cur)) {
-			System.out.println("Wrong input! Try Again!");
-			System.out.println("What is your currency? (HUF, EUR or USD)");
-			cur = sc.nextLine();
-		}
-		bp.setCurrency(Currency.valueOf(cur));
+
+		bp.setCurrency(Checker.inputCurrency(cur));
 		return bp;
 	}
 
@@ -83,7 +70,7 @@ public class ViewMethods implements View {
 	public Room selectRoom(List<Hotel> a) {
 		Room room = null;
 		menu = sc.nextLine();
-		if (inputcheck()) {
+		if (Checker.inputcheck()) {
 			for (int i = 0; i < a.size(); i++) {
 				for (int j = 0; j < a.get(i).getFloors().size(); j++) {
 					for (int k = 0; k < a.get(i).getFloors().get(j).getWings().size(); k++) {
@@ -122,26 +109,7 @@ public class ViewMethods implements View {
 	public void printCheckOut(BookingPerson a, List<Reservation> b) {
 		System.out.println("Few days later");
 		System.out.println("Check out, Suprise! You are the 100th guest you get a 10% refund");
-		//Dont need the double Bigdecimal can handle
-		Double refund = 0.0;
-		//Refund only apply for the first element 
-		//this should be in service
-		for (int i = 0; i < b.size(); i++) {
-			refund = refund + (b.get(i).getAmmount().doubleValue() * 0.1);
-		}
-		//If I ask the balace from the service this give back invalid amount, Should be in service
-		a.setBalance(a.getBalance().add(BigDecimal.valueOf(refund)));
 
-	}
-	//If its not part of the interface use private instead of public
-	//Also if you want cleaner code you can introduce another class and put the following lines to it like ViewHelper or InputChecker
-	public boolean inputcheck() {
-		try {
-			Integer.parseInt(menu);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 
 	public void printReservedRooms(List<Hotel> a, List<Reservation> r) {
@@ -187,39 +155,6 @@ public class ViewMethods implements View {
 				}
 			}
 		}
-	}
-	
-	//If it is nut Interface every time use privete, public or protected keyworld!!
-	boolean inputCheckBalance(String input) {
-		try {
-			Integer.parseInt(input);
-			return true;
-
-		} catch (NumberFormatException e) {
-			System.out.println("Wrong input! Try Again!");
-			return false;
-		}
-	}
-	
-	//Self improvement: NEVER USE SWITCH CASE, change to if or if else
-	//Switch case exist but in the corporate word nobody use it is a root cause of so many bugs!
-	boolean inputCheckCurrency(String input) {
-		boolean b = false;
-		switch (input) {
-		case "HUF":
-			b = true;
-			break;
-		case "EUR":
-			b = true;
-			break;
-		case "USD":
-			b = true;
-			;
-			break;
-		default:
-			b = false;
-		}
-		return b;
 	}
 
 }

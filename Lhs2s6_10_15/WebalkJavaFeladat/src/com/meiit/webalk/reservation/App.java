@@ -9,7 +9,7 @@ import com.meiit.webalk.reservation.view.ViewMethods;
 public class App {
 
 	public static void main(String[] args) {
-
+		//App methods defined in the UMl please separate your logic based on the UML
 		ReservationServiceMethods rsm = new ReservationServiceMethods();
 		ViewMethods vm = new ViewMethods();
 

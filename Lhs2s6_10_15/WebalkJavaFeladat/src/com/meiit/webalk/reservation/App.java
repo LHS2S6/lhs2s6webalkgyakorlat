@@ -2,21 +2,37 @@ package com.meiit.webalk.reservation;
 
 import com.meiit.webalk.reservation.domain.Reservation;
 import com.meiit.webalk.reservation.domain.Room;
+import com.meiit.webalk.reservation.service.ReservationService;
 import com.meiit.webalk.reservation.service.ReservationServiceMethods;
 import com.meiit.webalk.reservation.view.Checker;
+import com.meiit.webalk.reservation.view.View;
 import com.meiit.webalk.reservation.view.ViewMethods;
 
 public class App {
 
+	private static ReservationServiceMethods rsm = new ReservationServiceMethods();
+	private static ViewMethods vm = new ViewMethods();
+
 	public static void main(String[] args) {
 
-		ReservationServiceMethods rsm = new ReservationServiceMethods();
-		ViewMethods vm = new ViewMethods();
+		createBookingPerson();
+		book();
+		checkIn();
+		checkOut();
 
+	}
+
+	private App(ReservationService rs, View v) {
+
+	}
+
+	private static void createBookingPerson() {
 		rsm.saveBookingPerson(vm.readBookingPerson());
 		vm.printWelcomeMessage(rsm.findBookingPerson());
 		vm.printBalance(rsm.findBookingPerson());
+	}
 
+	private static void book() {
 		do {
 			vm.printRooms(rsm.findAllHotels());
 			Room r = vm.selectRoom(rsm.findAllHotels());
@@ -44,12 +60,17 @@ public class App {
 		} while (Checker.inputcheck());
 
 		vm.printReservedRooms(rsm.findAllHotels(), rsm.findAllReservations());
+	}
+
+	private static void checkIn() {
 		vm.printCheckIn(rsm.findAllReservations());
 		rsm.checkIn();
+	}
+
+	private static void checkOut() {
 		vm.printCheckOut(rsm.findBookingPerson(), rsm.findAllReservations());
 		rsm.checkOut();
 		vm.printBalance(rsm.findBookingPerson());
-
 	}
 
 }
